@@ -1,0 +1,193 @@
+<html>
+<style>
+    body
+    {
+        background-image: url('home.jpg');
+    }
+    
+  #inline
+  {
+    display: inline-block;
+}
+#myform
+{
+    padding-left: 50px;
+    padding-top: 100px;
+    width:25%;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #3399FF;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+#myModal{
+    width: 30%;
+    margin-left:400px;
+    height:70%;
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <title>Exercise</title>
+</head>
+<body>
+    <form id="myform" action="table.html" onsubmit="addPerson()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="education">Education</label>
+            <input type="text" class="form-control" id="education" placeholder="Enter your education">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-gray-dark">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="psw" placeholder="Password">
+        </div>
+        <button type="button" onclick="ClearInput()">Rest</button>
+        <button id="add" type="Submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+    <div id="div" ></div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>List of customer</h2>
+                    <span class="close">&times;</span>
+
+      </div>
+      <div class="modal-body">
+          <p id="result1"></p>
+          <p id="result2"></p>
+          <p id="result3"></p>
+
+      </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+    var arr = [];
+     // Get the modal
+     var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("add");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+function addPerson()
+{
+
+ var ans,ans1,ans2,ans3,ans4;
+ ans = document.getElementById("myform");
+ ans1 = ans.elements["name"].value;
+ ans2 = ans.elements["education"].value;
+ ans3 = ans.elements["email"].value;
+ ans4 = ans.elements["psw"].value;
+ arr.push(ans1);
+ arr.push(ans2);
+ arr.push(ans3);
+ console.log(arr);
+// When the user clicks the button, open the modal 
+modal.style.display = "block";
+
+  // ATTACH HTML TO CONTAINER
+  document.getElementById("result1").innerHTML = "Name:" + arr[arr.length-3];
+  document.getElementById("result2").innerHTML = "Education:" + arr[arr.length-2];
+  document.getElementById("result3").innerHTML = "Email:" +arr[arr.length-1];
+  localStorage.setItem("user",JSON.stringify(arr))
+  
+
+}   
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+}
+}
+const ClearInput = ()=>{
+    localStorage.removeItem("user");
+    ans = document.getElementById("myform");
+ ans.elements["name"].value=null
+ ans.elements["education"].value=null
+ ans.elements["email"].value=null
+ ans.elements["psw"].value=null
+}
+</script>
+</body>
+</html>

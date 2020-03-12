@@ -1,0 +1,119 @@
+<html>
+<style>
+    
+    table{
+      border: 1px solid;
+      border-collapse: collapse;
+      background-color: #66FFB2;
+      color: black;
+  }
+
+
+  th, td {
+      border: 1px solid;
+      min-width: 100px;
+      text-align: center;
+      padding: 5px;
+
+  }
+ tr:nth-child(even) {
+  background-color: #eee;
+}
+ tr:nth-child(odd) {
+ background-color: #fff;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <!-- <p id="per"></p>
+
+    <form style="margin-top: 8%;margin-left: 15%" method="post">
+        <table width="50%" height="50%" align="center">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" size=20 name="person"></td>
+            </tr>
+
+            <tr>
+                <td>Age:</td>
+                <td><input type="number" size=25 name="age"></td>
+
+            </tr>
+
+            <tr>
+                <td colspan="3"><input type="Reset">
+                    <button id="mybtn">Add</button>
+                    <button>Delete</button></td>
+
+                </tr>
+            </table>
+        </form>
+        <script type="text/javascript">
+        document.getElementById("mybtn").addEventListener("click",add);
+        function add()
+   <p id="per"></p>
+
+    <form style="margin-top: 8%;margin-left: 15%" method="post">
+        <table width="50%" height="50%" align="center">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" size=20 name="person"></td>
+            </tr>
+
+            <tr>
+                <td>Age:</td>
+                <td><input type="number" size=25 name="age"></td>
+
+            </tr>
+
+            <tr>
+                <td colspan="3"><input type="Reset">
+                    <button id="mybtn">Add</button>
+                    <button>Delete</button></td>
+
+                </tr>
+            </table>
+        </form>
+        <script type="text/javascript">
+        document.getElementById("mybtn").addEventListener("click",add);
+        function add()
+        {
+            console.log(localStorage.getItem("user"))
+          document.getElementById("per").innerHTML = "hello";
+      }     {
+            console.log(localStorage.getItem("user"))
+          document.getElementById("per").innerHTML = "hello";
+      } 
+
+  </script>-->
+  <script type="text/javascript">
+
+    var test = localStorage.getItem("user");
+    var result = JSON.parse(test);
+
+        var perrow = 3, // 3 items per row
+        html = "<table><tr>";
+        html+="<th>Name</th><th>Education</th><th>Email</th><br></tr>";
+
+  // Loop through array and add table cells
+  for (var i=0; i<result.length; i++) {
+    html += "<td>" + result[i] + "</td>";
+    // Break into next row
+    var next = i+1;
+    if (next%perrow==0 && next!=result.length) {
+      html += "</tr><tr>";
+  }
+}
+html += "</tr></table>";
+
+  // ATTACH HTML TO CONTAINER
+  document.getElementById("myDiv").innerHTML = html;
+
+</script>
+
+</body>
+</html>
